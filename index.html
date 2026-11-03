@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Set 2 – World Scholar's Cup – The Global Scholars Challenge</title>
+<!-- Ghi chú: file tài liệu tải lên không chứa hình ảnh nào truy cập được, nên trò chơi dùng biểu tượng emoji/CSS làm hình minh họa. Câu hỏi do tự biên soạn, không phải câu hỏi chính thức của WSC. -->
+<style>
+:root{--bg:#0b1740;--bg2:#15296b;--gold:#ffc83d;--card:#ffffff14;--ok:#22c55e;--no:#ef4444;--tx:#f4f7ff}
+*{box-sizing:border-box}body{margin:0;font-family:'Segoe UI',system-ui,Arial,sans-serif;color:var(--tx);background:radial-gradient(circle at 20% 0,#2a4bb8 0,var(--bg) 55%) fixed;min-height:100vh}
+.scr{display:none;max-width:900px;margin:0 auto;padding:18px;animation:in .4s}.scr.on{display:block}@keyframes in{from{opacity:0;transform:translateY(12px)}}
+h1{font-size:clamp(28px,6vw,48px);margin:.2em 0;color:var(--gold);letter-spacing:2px;text-align:center}h2{color:var(--gold)}
+.sub{text-align:center;opacity:.85}.cup{font-size:90px;text-align:center;animation:fl 3s infinite}@keyframes fl{50%{transform:translateY(-10px) rotate(4deg)}}
+.card{background:var(--card);border:1px solid #ffffff30;border-radius:16px;padding:16px;margin:12px 0}
+.btn{background:linear-gradient(#ffd75e,#f5a300);color:#1b1b1b;border:0;border-radius:12px;padding:13px 20px;font-size:16px;font-weight:700;cursor:pointer;margin:5px;min-height:46px}
+.btn.sec{background:#ffffff22;color:#fff}.btn:disabled{opacity:.4;cursor:not-allowed}.btn:hover:not(:disabled){filter:brightness(1.1)}
+.row{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.st{background:var(--card);border-radius:12px;padding:8px;text-align:center}.st b{display:block;font-size:20px;color:var(--gold)}
+.bar{height:10px;background:#ffffff25;border-radius:9px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,#4ade80,var(--gold));transition:width .4s}
+.opt{display:block;width:100%;text-align:left;background:#ffffff1c;color:#fff;border:2px solid #ffffff40;border-radius:12px;padding:14px;margin:8px 0;font-size:17px;cursor:pointer;min-height:48px}
+.opt.sel{border-color:var(--gold);background:#ffc83d30}.opt.ok{border-color:var(--ok);background:#22c55e44}.opt.bad{border-color:var(--no);background:#ef444444}
+.q{font-size:clamp(18px,3.5vw,23px);line-height:1.4;font-weight:600}.pass{background:#00000030;border-left:4px solid var(--gold);padding:10px;border-radius:8px;margin:8px 0;font-style:italic}
+.big{font-size:70px;text-align:center}input[type=text],select{padding:11px;border-radius:10px;border:2px solid #ffffff50;background:#0b1740;color:#fff;font-size:16px;width:100%;max-width:100%}
+.fb{padding:12px;border-radius:12px;margin:10px 0}.fb.ok{background:#22c55e30;border:2px solid var(--ok)}.fb.bad{background:#ef444430;border:2px solid var(--no)}
+.ov{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;z-index:9;padding:20px}.ov.on{display:flex}.ov>div{background:var(--bg2);padding:26px;border-radius:18px;max-width:420px;text-align:center;border:2px solid var(--gold)}
+.cf{position:fixed;top:-30px;font-size:26px;z-index:8;animation:cf 1.6s linear forwards;pointer-events:none}@keyframes cf{to{transform:translateY(105vh) rotate(360deg)}}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.cr{display:flex;align-items:center;gap:6px;margin:4px 0;font-size:13px}.cr span{width:70px}.cr .bar{flex:1}.tag{font-size:12px;background:#ffffff25;border-radius:9px;padding:2px 8px}
+label{display:block;margin:6px 0}
+</style></head><body>
+<div id="home" class="scr on"><div class="cup">🏆</div><h1>WORLD SCHOLAR’S CUP</h1><p class="sub" style="font-size:20px;letter-spacing:3px">THE GLOBAL SCHOLARS CHALLENGE – SET 2</p>
+<p class="sub"><i>Think Globally – Learn English – Become a Scholar</i></p>
+<div class="stats"><div class="st"><b>100</b>Questions</div><div class="st"><b>10</b>Rounds</div><div class="st"><b>Grade 8–9</b>Audience</div></div>
+<div class="row" style="margin-top:18px"><button class="btn" onclick="show('setup')">START THE CHALLENGE</button><button class="btn sec" onclick="show('how')">HOW TO PLAY</button><button class="btn sec" onclick="show('topics')">VIEW TOPICS</button></div>
+<p class="sub" style="font-size:12px">Bộ câu hỏi tự biên soạn, lấy cảm hứng từ phong cách WSC; không phải câu hỏi chính thức.</p></div>
+
+<div id="how" class="scr"><h2>HOW TO PLAY – Luật chơi</h2><div class="card">
+<p>• <b>Practice:</b> luyện tập, có giải thích, được thử lại, có thể tắt đồng hồ.<br>• <b>Competition:</b> chọn vòng, tính điểm, khóa đáp án sau khi kiểm tra.<br>• <b>Full WSC Challenge:</b> 100 câu, 10 vòng, tổng kết cuối.</p>
+<p>Điểm: dễ 100 • trung bình 200 • khó 300. Thưởng nhanh tối đa 50, thưởng chuỗi đúng (+10 mỗi câu liên tiếp, tối đa +50), thưởng hoàn thành vòng tối đa 200. Dùng gợi ý sẽ mất điểm thưởng nhanh. Hết giờ hoặc sai: 0 điểm.</p>
+<p>Thời gian: dễ 20s • trung bình 30s • khó 45s • Reading 75s. Chơi theo cặp: luân phiên hoặc cùng thảo luận.</p></div><button class="btn" onclick="show('home')">← BACK</button></div>
+
+<div id="topics" class="scr"><h2>10 ROUNDS</h2><div id="tl"></div><button class="btn" onclick="show('home')">← BACK</button></div>
+
+<div id="setup" class="scr"><h2>Chọn chế độ chơi</h2>
+<div class="card"><label><input type="radio" name="mode" value="practice" checked> 📘 <b>Practice Mode</b> – luyện tập, giải thích sau mỗi câu</label>
+<label><input type="radio" name="mode" value="comp"> ⏱️ <b>Competition Mode</b> – thi đấu theo thời gian, chọn vòng</label>
+<label><input type="radio" name="mode" value="full"> 🏆 <b>Full WSC Challenge</b> – 100 câu, 10 vòng</label></div>
+<div class="card"><label>Vòng thi (Practice/Competition): <select id="rsel"></select></label>
+<label>Thời gian: <select id="tsel"><option value="1">Tiêu chuẩn</option><option value="1.5">Kéo dài +50%</option><option value="0">Không giới hạn (chỉ Practice)</option></select></label>
+<label><input type="checkbox" id="pen"> Chế độ nâng cao: trả lời sai bị trừ 50 điểm (Competition/Full)</label></div>
+<div class="card"><label>Cách chơi: <select id="pm"><option value="1">Cá nhân</option><option value="alt">Theo cặp – luân phiên</option><option value="team">Theo cặp – cùng thảo luận</option></select></label>
+<label>Scholar 1: <input type="text" id="n1" maxlength="20" placeholder="Scholar 1"></label><label>Scholar 2 (nếu chơi cặp): <input type="text" id="n2" maxlength="20" placeholder="Scholar 2"></label></div>
+<div class="row"><button class="btn" onclick="start()">▶ BEGIN</button><button class="btn sec" onclick="show('home')">← BACK</button></div></div>
+
+<div id="play" class="scr"><div class="card" style="padding:10px"><div class="row" style="justify-content:space-between"><b id="rn"></b><span id="qn"></span></div><div class="bar"><i id="pb"></i></div>
+<div class="stats" style="margin-top:8px"><div class="st"><b id="sc">0</b>SCORE</div><div class="st"><b id="tm">--</b>TIME LEFT</div><div class="st"><b id="sk">0</b>STREAK 🔥</div><div class="st"><b id="who" style="font-size:15px">-</b>PLAYER</div></div></div>
+<div class="card"><div><span class="tag" id="tg"></span> <span class="tag" id="df"></span></div><div id="qb"></div><div id="hint" class="fb" style="display:none;background:#ffc83d25"></div><div id="fb"></div></div>
+<div class="row"><button class="btn" id="bc" onclick="check()">CHECK ANSWER</button><button class="btn sec" id="bh" onclick="hint()">💡 HINT</button><button class="btn" id="bn" onclick="next()" disabled>NEXT QUESTION ▶</button><button class="btn sec" onclick="skip()">SKIP</button><button class="btn sec" onclick="pause(1)">⏸ PAUSE</button><button class="btn sec" id="bs" onclick="snd()">🔊</button><button class="btn sec" onclick="if(confirm('Thoát về trang chủ?')){stop();show('home')}">HOME</button></div></div>
+
+<div id="sum" class="scr"><div class="big">🏆</div><h1 style="font-size:clamp(24px,5vw,38px)">CONGRATULATIONS, SCHOLAR!</h1><p class="sub">THE GLOBAL CHALLENGE IS COMPLETE!</p><div id="sb"></div>
+<div class="row"><button class="btn" onclick="show('setup')">PLAY AGAIN</button><button class="btn sec" onclick="rev('all')">REVIEW ANSWERS</button><button class="btn sec" onclick="document.getElementById('rr').scrollIntoView({behavior:'smooth'})">VIEW ROUND RESULTS</button><button class="btn sec" onclick="show('home')">BACK TO HOME</button></div></div>
+
+<div id="review" class="scr"><h2>REVIEW ANSWERS</h2><div class="row"><select id="rf" onchange="rev()" style="width:auto"><option value="all">Tất cả</option><option value="bad">Câu sai / chưa trả lời</option><option value="ok">Câu đúng</option></select><select id="rrd" onchange="rev()" style="width:auto"></select></div><div id="rl"></div><button class="btn" onclick="show('sum')">← BACK</button></div>
+
+<div class="ov" id="ov"><div id="ovb"></div></div>
+<script>
+const R=["English Vocabulary & Grammar","Reading Comprehension","Science & Innovation","History & Civilization","Geography & Global Cultures","Environment & Sustainability","Art, Literature & Communication","Technology & Future World","Global Issues & Critical Thinking","WSC Grand Challenge – Mixed Knowledge"];
+const T={mc:"Multiple Choice",tf:"True or False",fill:"Fill in the Blank",match:"Matching",sc:"Sentence Completion",err:"Error Correction",read:"Reading Challenge",crit:"Critical Thinking",img:"Image-based",puz:"Word Puzzle"};
+const P1="Sign: Swimming Pool Rules. No running. Children under 12 must be with an adult. The pool is closed from 12 to 1 p.m.";
+const P2="Vietnam's Mekong Delta has floating markets where farmers sell fruit and vegetables from boats. Tourists enjoy them, but fewer young people want to work there because supermarkets are more convenient.";
+const P3="Lina wanted to start a recycling club. At first, few classmates joined. She made posters and organised a plastic-collecting contest. Within a month, forty students had joined.";
+const P4="Some people say video games waste time. However, researchers found that certain games improve problem-solving and teamwork. The key is to play in moderation.";
+const P5="Summer English Camp: July 1–15. Ages 12–15. Register online before June 20.";
+const TF=["True","False"];
+// [type,difficulty,question,options,answer,explanation,hint,extra]
+const D=[
+["mc","e","Which word is closest in meaning to 'enormous'?",["Huge","Tiny","Quiet","Weak"],0,"'Enormous' = rất lớn → 'huge'.","Think: very big."],
+["mc","e","Choose the OPPOSITE of 'generous'.",["Selfish","Kind","Friendly","Polite"],0,"Generous (hào phóng) >< selfish (ích kỷ).","Giving vs. keeping."],
+["mc","m","She ___ TV when the phone rang.",["watches","was watching","has watched","will watch"],1,"Hành động đang diễn ra thì bị cắt ngang → quá khứ tiếp diễn.","Past action in progress."],
+["mc","m","English ___ in many countries around the world.",["speaks","is spoken","spoke","speaking"],1,"Bị động hiện tại đơn: is/are + V3.","English doesn't speak."],
+["fill","m","The book ___ I borrowed was fascinating. (which/that)",null,["which","that"],"Đại từ quan hệ chỉ vật: which/that.","Relative pronoun for things."],
+["err","m","Error correction: 'She doesn't likes pizza.' Type the correct form of 'likes'.",null,["like"],"Sau 'doesn't' dùng động từ nguyên mẫu.","Auxiliary 'doesn't'."],
+["mc","m","I was tired; ___, I finished my homework.",["however","because","unless","so that"],0,"'However' diễn tả sự đối lập giữa hai ý.","Contrast."],
+["match","m","Match each adjective with its meaning.",[["Ambitious","wanting to achieve success"],["Curious","eager to learn or know"],["Reliable","can be trusted"],["Fluent","speaking smoothly"]],0,"Từ vựng mô tả tính cách và kỹ năng.","Think of each word's root."],
+["mc","h","If she had studied harder, she ___ the exam.",["would pass","would have passed","will pass","passed"],1,"Điều kiện loại 3: had + V3, would have + V3.","Unreal past."],
+["puz","m","Riddle: What gets wetter the more it dries?",null,["towel","a towel"],"Khăn tắm.","Used after a bath."],
+["read","e","Read the sign. Who must be with an adult?",["Children under 12","All students","Teachers","Visitors over 12"],0,"Biển báo: trẻ dưới 12 tuổi phải có người lớn.","Find the age.",P1],
+["read","m","What is the main idea of the passage?",["Floating markets attract tourists but are declining","Supermarkets are illegal","Boats are too expensive","Tourists dislike fruit"],0,"Chợ nổi hút khách nhưng ít người trẻ làm việc.","Attraction + problem.",P2],
+["read","m","Why do fewer young people want to work there?",["Supermarkets are more convenient","The delta is far away","Boats are free","Tourists are rude"],0,"'supermarkets are more convenient'.","Look at the last clause.",P2],
+["read","m","True or False: Only tourists sell goods at floating markets.",TF,1,"Sai: người bán là nông dân (farmers).","Who sells?",P2],
+["read","m","What helped Lina's club grow?",["Posters and a collecting contest","Free food","A new school","Online games"],0,"Cô làm áp phích và tổ chức cuộc thi thu gom nhựa.","Find what she made and organised.",P3],
+["read","m","'Organised' is closest in meaning to…",["planned and arranged","cancelled","forgot","avoided"],0,"Organise = tổ chức, sắp xếp.","She did it on purpose.",P3],
+["read","h","What can we infer from the story?",["Creative promotion can motivate others","Few people care about recycling","Lina quit the club","Posters are expensive"],0,"Quảng bá sáng tạo giúp thu hút thành viên.","Compare 'at first' and 'within a month'.",P3],
+["read","m","What is the writer's view on video games?",["Some games can be beneficial if played in moderation","All games are harmful","Games should be banned","Games are only for adults"],0,"Tác giả cho rằng một số game có lợi nếu chơi điều độ.","Look at 'However'.",P4],
+["sc","h","Complete: The key to healthy gaming is to play in ___. (one word)",null,["moderation"],"'in moderation' = vừa phải, điều độ.","Not too much.",P4],
+["read","e","True or False: You can register for the camp on June 25.",TF,1,"Phải đăng ký trước ngày 20/6 → Sai.","Check the deadline.",P5],
+["img","e","Which planet do we live on, the third from the Sun?",["Earth","Mars","Venus","Jupiter"],0,"Trái Đất là hành tinh thứ ba.","Look at the picture.","🌍"],
+["mc","e","Which organs help us breathe?",["Lungs","Kidneys","Stomach","Liver"],0,"Phổi giúp trao đổi khí.","Breathing in and out."],
+["tf","e","Sound can travel through a vacuum (empty space).",TF,1,"Sai: âm thanh cần môi trường vật chất để truyền.","No air, no sound."],
+["mc","m","Who developed the first widely used polio vaccine in the 1950s?",["Jonas Salk","Isaac Newton","Thomas Edison","Nikola Tesla"],0,"Jonas Salk phát triển vắc-xin bại liệt.","American scientist."],
+["match","m","Match each animal with its group.",[["Dolphin","mammal"],["Crocodile","reptile"],["Frog","amphibian"],["Penguin","bird"]],0,"Phân loại động vật.","Dolphins are not fish."],
+["fill","m","The force that pulls objects toward the Earth is ___. (one word)",null,["gravity"],"Trọng lực / lực hấp dẫn.","Newton and the apple."],
+["mc","m","Which is an everyday use of artificial intelligence?",["A voice assistant answering questions","A paper map","A wooden ruler","A candle"],0,"Trợ lý ảo dùng AI.","Smart technology."],
+["mc","m","What is the chemical formula of water?",["H₂O","CO₂","O₂","NaCl"],0,"Nước = 2 nguyên tử H và 1 nguyên tử O.","Hydrogen + oxygen."],
+["crit","h","Two students test which paper towel absorbs the most water. What makes it a fair test?",["Using the same amount of water for each towel","Using different amounts of water","Testing only one towel","Changing the towel sizes"],0,"Thí nghiệm công bằng chỉ thay đổi một yếu tố.","Control variables."],
+["puz","h","Riddle: I travel around the world but stay in one corner. What am I?",null,["stamp","a stamp","postage stamp"],"Con tem nằm ở góc phong bì.","Found on letters."],
+["mc","e","Ancient Romans spoke which language?",["Latin","Greek","English","Chinese"],0,"Người La Mã cổ đại nói tiếng Latin.","Many English words come from it."],
+["mc","m","Who sailed across the Atlantic in 1492 and reached the Americas?",["Christopher Columbus","Marco Polo","Napoleon","Julius Caesar"],0,"Columbus đến châu Mỹ năm 1492.","Italian explorer."],
+["match","m","Match the person with the achievement.",[["Leonardo da Vinci","painted the Mona Lisa"],["Marco Polo","travelled to China from Europe"],["Wright brothers","first powered airplane flight"],["Gutenberg","printing press in Europe"]],0,"Nhân vật lịch sử nổi tiếng.","Famous names."],
+["mc","m","Which empire built the Colosseum?",["Roman Empire","Mongol Empire","Ottoman Empire","Inca Empire"],0,"Colosseum ở Rome, Ý.","Gladiators."],
+["tf","m","The Berlin Wall fell in 1989.",TF,0,"Đúng, bức tường Berlin sụp đổ năm 1989.","Late 1980s."],
+["mc","m","Marie Curie won Nobel Prizes in Physics and in…",["Chemistry","Literature","Peace","Medicine"],0,"Bà đoạt Nobel Vật lý và Hóa học.","Radium."],
+["mc","h","The Rosetta Stone helped scholars read…",["Egyptian hieroglyphs","Roman numbers","Maya calendars","Viking maps"],0,"Nó có cùng văn bản bằng 3 chữ viết.","Ancient Egypt."],
+["fill","h","In 938, General ___ Quyền defeated the Southern Han fleet on the Bạch Đằng River. (one word)",null,["ngo","ngô"],"Ngô Quyền – chiến thắng Bạch Đằng 938.","First name of a king."],
+["mc","m","The Wright brothers are famous for inventing the…",["airplane","telephone","steam engine","radio"],0,"Chuyến bay có động cơ đầu tiên năm 1903.","Kitty Hawk."],
+["crit","h","Why is studying history useful?",["We learn from the past to make better decisions","It helps us predict lottery numbers","It is only about dates","It replaces science"],0,"Lịch sử giúp rút kinh nghiệm.","Learning from the past."],
+["mc","e","What is the capital of France?",["Paris","Lyon","Marseille","Nice"],0,"Thủ đô nước Pháp là Paris.","Eiffel Tower."],
+["mc","e","Which is the largest continent?",["Asia","Africa","Europe","Australia"],0,"Châu Á lớn nhất.","Vietnam is on it."],
+["mc","m","Which river flows through London?",["The Thames","The Seine","The Danube","The Nile"],0,"Sông Thames chảy qua London.","Starts with T."],
+["match","m","Match each country with its capital.",[["Egypt","Cairo"],["Kenya","Nairobi"],["Argentina","Buenos Aires"],["South Korea","Seoul"]],0,"Thủ đô các quốc gia.","Continents help."],
+["img","e","The giant panda is native to which country?",["China","Peru","Canada","Australia"],0,"Gấu trúc khổng lồ sống ở Trung Quốc.","Look at the picture.","🐼"],
+["mc","m","Which imaginary line divides the Earth into the Northern and Southern Hemispheres?",["The Equator","The Prime Meridian","The Tropic of Cancer","The Date Line"],0,"Xích đạo chia Trái Đất thành Bắc và Nam bán cầu.","Zero degrees latitude."],
+["tf","m","Switzerland has no coastline (it is landlocked).",TF,0,"Đúng, Thụy Sĩ không giáp biển.","Alps."],
+["fill","m","The kangaroo is a national symbol of ___. (one word)",null,["australia"],"Kangaroo là biểu tượng của Úc.","Down under."],
+["mc","h","What is the smallest country in the world?",["Vatican City","Monaco","Malta","Singapore"],0,"Vatican City nhỏ nhất thế giới.","Inside Rome."],
+["mc","m","The tomato-throwing festival La Tomatina is held in…",["Spain","Mexico","Japan","Egypt"],0,"La Tomatina diễn ra ở Buñol, Tây Ban Nha.","Europe."],
+["mc","e","Which bin should an empty newspaper go in?",["Paper recycling","General trash","Food waste","Glass"],0,"Giấy được tái chế.","Recycle."],
+["mc","m","The ozone layer protects us from…",["harmful ultraviolet rays","earthquakes","heavy rain","noise"],0,"Tầng ôzôn chắn tia UV.","UV."],
+["tf","e","Planting trees helps reduce carbon dioxide in the air.",TF,0,"Đúng, cây hấp thụ CO₂.","Photosynthesis."],
+["fill","m","Energy from flowing water is called ___ energy. (one word)",null,["hydro","hydroelectric","water"],"Thủy điện.","Dams."],
+["match","m","Match the environmental term with its meaning.",[["Deforestation","cutting down large areas of forest"],["Endangered","at risk of disappearing"],["Compost","decayed organic matter for soil"],["Fossil fuel","coal, oil or natural gas"]],0,"Thuật ngữ môi trường.","Read carefully."],
+["mc","m","The greenhouse effect happens when gases…",["trap heat in the atmosphere","block all sunlight","cool the Earth","create oxygen"],0,"Khí nhà kính giữ nhiệt.","Greenhouse."],
+["mc","m","Which is the best reusable alternative to plastic bags?",["A cloth bag","A paper cup","A foam box","A balloon"],0,"Túi vải dùng được nhiều lần.","Reuse."],
+["crit","h","A factory dumps waste into a river. What should residents do?",["Report it to authorities and ask for cleaner methods","Stay silent","Throw more waste","Move the river"],0,"Báo cáo và yêu cầu giải pháp bền vững.","Responsible action."],
+["err","m","Error correction: 'Plastic waste pollute the ocean.' Type the correct form of 'pollute'.",null,["pollutes"],"Chủ ngữ 'waste' số ít → pollutes.","Singular subject."],
+["mc","h","Coral reefs are bleaching mainly because of…",["rising sea temperatures","too many fish","cold rain","tourist photos"],0,"Nước biển ấm lên làm san hô mất tảo cộng sinh.","Warm water."],
+["mc","e","Who painted 'Sunflowers'?",["Vincent van Gogh","Leonardo da Vinci","Claude Monet","Picasso"],0,"Van Gogh vẽ Hoa hướng dương.","Dutch painter."],
+["mc","m","Who wrote the 'Harry Potter' books?",["J.K. Rowling","Roald Dahl","C.S. Lewis","J.R.R. Tolkien"],0,"J.K. Rowling.","British author."],
+["match","m","Match the art form with its description.",[["Haiku","a short Japanese poem"],["Opera","a drama told through singing"],["Ballet","dance with music and stories"],["Sculpture","a three-dimensional artwork"]],0,"Các hình thức nghệ thuật.","Read the description."],
+["mc","m","Vietnamese water puppetry originated in the…",["Red River Delta","Central Highlands","Mekong Delta","Southern islands"],0,"Múa rối nước có nguồn gốc ở đồng bằng sông Hồng.","Northern Vietnam."],
+["mc","m","Which sentence uses alliteration?",["Silly snakes slither slowly.","The sky is blue.","She runs fast.","He ate dinner."],0,"Alliteration: lặp phụ âm đầu.","Same sound at the start."],
+["fill","m","An extreme exaggeration, such as 'I'm so hungry I could eat a horse', is called a ___. (one word)",null,["hyperbole"],"Hyperbole = phép phóng đại.","Starts with H."],
+["crit","m","Which feedback is most helpful to a classmate?",["Polite and specific advice","'It's bad.'","Silence","Laughing at them"],0,"Phản hồi cụ thể và lịch sự.","Be constructive."],
+["mc","m","Which is a persuasive technique commonly used in advertisements?",["A catchy slogan","A table of data only","A map","A timetable"],0,"Slogan dễ nhớ giúp thuyết phục.","Advertising."],
+["tf","m","Wolfgang Amadeus Mozart was a composer from Austria.",TF,0,"Đúng.","Salzburg."],
+["puz","h","Riddle: What can you break without touching it?",null,["promise","a promise"],"Bạn có thể phá vỡ lời hứa.","Not physical."],
+["mc","e","What is a web browser?",["Software used to view websites","A keyboard","A printer","A charger"],0,"Chrome, Edge, Firefox là trình duyệt.","Used to open websites."],
+["img","e","A car that drives itself using sensors and AI is called an ___ car.",["autonomous","ancient","angry","artistic"],0,"Xe tự lái = autonomous car.","Look at the picture.","🚗"],
+["tf","m","Public Wi-Fi is always safe for online banking.",TF,1,"Sai: Wi-Fi công cộng có thể bị theo dõi.","Not always safe."],
+["mc","m","Cyberbullying means…",["using technology to harass or hurt others","playing online games","coding a website","sending emails to friends"],0,"Bắt nạt trực tuyến.","Online harm."],
+["match","m","Match the tech term with its meaning.",[["Algorithm","step-by-step instructions to solve a problem"],["Database","organised storage of data"],["Drone","an unmanned flying machine"],["3D printer","makes objects layer by layer"]],0,"Thuật ngữ công nghệ.","Think about function."],
+["fill","m","A set of instructions that tells a computer what to do is a ___. (one word)",null,["program"],"Chương trình máy tính.","Code."],
+["mc","m","Cloud storage allows you to…",["save files online and access them anywhere","print photos","charge a phone","clean a screen"],0,"Lưu trữ đám mây.","Online."],
+["crit","h","Before sharing a shocking news post, what should you do first?",["Check the source and facts","Share it quickly","Add more drama","Delete your account"],0,"Kiểm chứng trước khi chia sẻ.","Fake news."],
+["mc","h","Your 'digital footprint' is…",["the trail of data you leave online","your shoe size","a type of robot","a password"],0,"Dấu vết số.","Data trail."],
+["err","h","Error correction: 'The internet have changed our lives.' Type the correct form of 'have'.",null,["has"],"'The internet' số ít → has.","Singular subject."],
+["mc","e","'WHO' stands for…",["World Health Organization","World Help Office","Western Health Order","World Hospital Organization"],0,"Tổ chức Y tế Thế giới.","Health."],
+["mc","m","UN Sustainable Development Goal 13 is about…",["Climate action","Quality education","No poverty","Clean water"],0,"SDG 13 = hành động vì khí hậu.","Weather and carbon."],
+["tf","m","Child labour is illegal in most countries.",TF,0,"Đúng, pháp luật và công ước quốc tế cấm lao động trẻ em.","Children's rights."],
+["mc","m","Which habit best supports good health?",["Balanced diet, exercise and sleep","Skipping meals","Sitting all day","Staying up late"],0,"Lối sống lành mạnh.","Balance."],
+["crit","h","Which statement is a FACT?",["The Earth orbits the Sun.","Winter is the best season.","Dogs are better than cats.","Pizza is delicious."],0,"Sự thật kiểm chứng được.","Can it be proven?"],
+["match","m","Match the social term with its meaning.",[["Refugee","a person forced to flee their country"],["Poverty","lack of basic resources"],["Literacy","the ability to read and write"],["Migration","moving to live in another place"]],0,"Thuật ngữ xã hội.","Read carefully."],
+["mc","h","Why should you compare several sources of information?",["To reduce bias and check accuracy","To waste time","To copy faster","To avoid reading"],0,"So sánh nhiều nguồn giúp đánh giá tốt hơn.","Critical thinking."],
+["crit","h","In a group project, a few students speak while others stay quiet. What is the best solution?",["Give each member a role so everyone contributes","Let the loudest decide","Cancel the project","Work alone"],0,"Phân vai giúp mọi người tham gia.","Fairness."],
+["fill","m","The ability to read and write is called ___. (one word)",null,["literacy"],"Literacy.","Related to school."],
+["mc","h","All birds have feathers. A penguin is a bird. Therefore…",["a penguin has feathers","a penguin can fly","a penguin is a fish","a penguin has fur"],0,"Suy luận logic.","Follow the rule."],
+["mc","m","Choose the synonym of 'essential'.",["necessary","optional","rare","harmless"],0,"Essential = cần thiết.","Must-have."],
+["mc","m","Which planet is known as the Red Planet?",["Mars","Venus","Saturn","Mercury"],0,"Sao Hỏa có màu đỏ.","Rusty soil."],
+["tf","m","Most of the Amazon rainforest is in Brazil.",TF,0,"Đúng, khoảng 60% ở Brazil.","South America."],
+["fill","h","If I ___ rich, I would travel the world. (one word)",null,["were"],"Điều kiện loại 2: were.","Unreal present."],
+["crit","h","A poll asks 5 students and claims 'everyone loves the school cafeteria'. What is the problem?",["The sample is too small","The poll is too long","Students are too young","Cafeterias are bad"],0,"Mẫu quá nhỏ.","How many people?"],
+["match","h","Match the thinking term with its meaning.",[["Hypothesis","a testable prediction"],["Conclusion","a judgment based on evidence"],["Stereotype","an oversimplified belief about a group"],["Compromise","an agreement where each side gives something up"]],0,"Thuật ngữ tư duy.","Debate skills."],
+["mc","h","How has the Internet most changed communication?",["It allows fast global connection","It stopped letters","It made languages vanish","It ended friendships"],0,"Kết nối toàn cầu nhanh chóng.","Speed."],
+["mc","h","The homework ___ by the time the teacher arrived.",["had been finished","has finished","was finish","is finishing"],0,"Bị động quá khứ hoàn thành: had been + V3.","Past perfect passive."],
+["crit","h","Data show countries with more schools often have higher literacy. Which conclusion is best?",["Investing in education may improve literacy","Schools cause problems","Literacy is unrelated to schools","Only big countries have schools"],0,"Kết luận thận trọng.","Use 'may'."],
+["mc","h","Which behavior best helps a WSC-style team debate?",["Sharing tasks, listening and building on ideas","Interrupting","Working alone","Ignoring evidence"],0,"Tranh biện nhóm cần lắng nghe và hợp tác.","Teamwork."]
+];
+if(D.length!==100)console.error("Question count:",D.length);
+const Q=D.map((d,i)=>({id:i+1,round:Math.floor(i/10)+1,category:R[Math.floor(i/10)],type:d[0],difficulty:d[1],question:d[2],options:d[3],answer:d[4],explanation:d[5],hint:d[6]||"",extra:d[7]||null,points:{e:100,m:200,h:300}[d[1]],timeLimit:d[0]==="read"?75:{e:20,m:30,h:45}[d[1]]}));
+const $=id=>document.getElementById(id),DF={e:"EASY",m:"MEDIUM",h:"HARD"};
+let S={},sound=true,AC=null,store={};
+try{store=JSON.parse(localStorage.getItem("wsc2")||"{}")}catch(e){}
+function save(){try{localStorage.setItem("wsc2",JSON.stringify(store))}catch(e){}}
+sound=store.sound!==false;$("bs").textContent=sound?"🔊":"🔇";$("n1").value=store.n1||"";$("n2").value=store.n2||"";
+$("tl").innerHTML=R.map((r,i)=>`<div class="card"><b>Round ${i+1}</b> – ${r}</div>`).join("");
+$("rsel").innerHTML='<option value="all">Tất cả 10 vòng</option>'+R.map((r,i)=>`<option value="${i+1}">Round ${i+1} – ${r}</option>`).join("");
+function show(id){document.querySelectorAll(".scr").forEach(s=>s.classList.remove("on"));$(id).classList.add("on");window.scrollTo(0,0);S.screen=id}
+function beep(f,d,t){if(!sound)return;try{AC=AC||new(window.AudioContext||window.webkitAudioContext)();const o=AC.createOscillator(),g=AC.createGain();o.frequency.value=f;o.type=t||"sine";g.gain.value=.08;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}catch(e){}}
+const tone={sel:()=>beep(520,.08),ok:()=>{beep(660,.15);setTimeout(()=>beep(880,.25),130)},no:()=>beep(200,.3,"triangle"),rd:()=>{[523,659,784].forEach((f,i)=>setTimeout(()=>beep(f,.2),i*140))},win:()=>{[523,659,784,1047].forEach((f,i)=>setTimeout(()=>beep(f,.3),i*160))}};
+function snd(){sound=!sound;store.sound=sound;save();$("bs").textContent=sound?"🔊":"🔇"}
+function confetti(){for(let i=0;i<22;i++){const c=document.createElement("div");c.className="cf";c.textContent=["⭐","🎉","✨"][i%3];c.style.left=Math.random()*100+"vw";c.style.animationDelay=Math.random()*.4+"s";document.body.appendChild(c);setTimeout(()=>c.remove(),2200)}}
+function start(){
+ const mode=document.querySelector("input[name=mode]:checked").value,pm=$("pm").value,rs=$("rsel").value;
+ let list=(mode==="full"||rs==="all")?Q.slice():Q.filter(q=>q.round==+rs);
+ const n1=$("n1").value.trim()||"Scholar 1",n2=$("n2").value.trim()||"Scholar 2";store.n1=$("n1").value.trim();store.n2=$("n2").value.trim();save();
+ let ts=+$("tsel").value;if(ts===0&&mode!=="practice")ts=1;
+ const pl=pm==="1"?[{n:n1,s:0,r:0}]:pm==="team"?[{n:n1+" & "+n2,s:0,r:0}]:[{n:n1,s:0,r:0},{n:n2,s:0,r:0}];
+ S={mode,list,idx:0,pl,alt:pm==="alt",ts,pen:$("pen").checked&&mode!=="practice",res:{},streak:0,t0:Date.now(),paused:false};
+ loadQ();
+}
+function cur(){return S.alt?S.pl[S.idx%2]:S.pl[0]}
+function sh(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function loadQ(){
+ const q=S.q=S.list[S.idx];S.locked=false;S.sel=null;S.hinted=false;S.att=0;S.left=S.ts?q.timeLimit*S.ts*1000:0;S.limit=S.left;S.last=Date.now();
+ show("play");$("rn").textContent=`ROUND ${String(q.round).padStart(2,"0")} – ${q.category.toUpperCase()}`;$("qn").textContent=`QUESTION ${S.idx+1} / ${S.list.length}`;
+ $("pb").style.width=(S.idx/S.list.length*100)+"%";$("tg").textContent=T[q.type];$("df").textContent=DF[q.difficulty]+" • "+q.points+" pts";
+ $("who").textContent=cur().n;$("hint").style.display="none";$("fb").innerHTML="";$("bn").disabled=true;$("bc").disabled=false;$("bh").disabled=!q.hint;$("bn").textContent=S.idx===S.list.length-1?"FINISH 🏁":"NEXT QUESTION ▶";
+ let h="";if(q.type==="img"||q.type==="read"&&0)h=`<div class="big">${q.extra}</div>`;
+ if(q.type==="read"||(q.type==="mc"&&0))h+=`<div class="pass">${q.extra}</div>`;
+ h+=`<p class="q">${q.question}</p>`;
+ if(q.type==="fill"||q.type==="err"||q.type==="sc"||q.type==="puz")h+=`<input type="text" id="fi" autocomplete="off" placeholder="Type your answer…" onkeydown="if(event.key==='Enter')check()">`;
+ else if(q.type==="match"){const rs=sh(q.options.map(p=>p[1]));h+=q.options.map((p,i)=>`<div class="card" style="padding:8px"><b>${p[0]}</b><select class="ms" data-i="${i}"><option value="">— choose —</option>${rs.map(r=>`<option>${r}</option>`).join("")}</select></div>`).join("")}
+ else h+=q.options.map((o,i)=>`<button class="opt" data-i="${i}" onclick="pick(${i})"><b>${q.type==="tf"?"":"ABCD"[i]+". "}</b>${o}</button>`).join("");
+ $("qb").innerHTML=h;updTop();
+}
+function updTop(){$("sc").textContent=S.pl.reduce((a,p)=>a+p.s,0).toLocaleString();$("sk").textContent=S.streak;const l=S.left;$("tm").textContent=S.ts?`${String(Math.floor(Math.ceil(l/1000)/60)).padStart(2,"0")}:${String(Math.ceil(l/1000)%60).padStart(2,"0")}`:"∞"}
+function pick(i){if(S.locked||S.paused)return;S.sel=i;document.querySelectorAll(".opt").forEach(b=>b.classList.toggle("sel",+b.dataset.i===i));tone.sel()}
+function norm(s){return s.toLowerCase().trim().replace(/[.!]+$/,"").replace(/\s+/g," ")}
+function ans(){const q=S.q;
+ if(["fill","err","sc","puz"].includes(q.type)){const v=norm($("fi").value);return v?{ok:q.answer.includes(v),txt:$("fi").value.trim()}:null}
+ if(q.type==="match"){const ss=[...document.querySelectorAll(".ms")];if(ss.some(s=>!s.value))return null;let ok=true;ss.forEach((s,i)=>{const g=s.value===q.options[i][1];ok=ok&&g;s.style.borderColor=g?"#22c55e":"#ef4444"});return{ok,txt:ss.map((s,i)=>q.options[i][0]+" → "+s.value).join("; ")}}
+ return S.sel===null?null:{ok:S.sel===q.answer,txt:q.options[S.sel]}}
+function corr(q){return ["fill","err","sc","puz"].includes(q.type)?q.answer[0]:q.type==="match"?q.options.map(p=>p[0]+" → "+p[1]).join("; "):q.options[q.answer]}
+function check(){
+ if(S.locked||S.paused)return;const a=ans();if(!a){toast("Hãy chọn / nhập đáp án trước khi kiểm tra.");return}
+ const q=S.q,first=!S.res[S.idx];let pts=0;
+ if(a.ok){S.att++;
+  if(first){pts=q.points;if(S.mode!=="practice"||S.att===1){S.streak++;if(S.ts&&!S.hinted)pts+=Math.round(50*S.left/S.limit);if(S.streak>1)pts+=Math.min(S.streak-1,5)*10}
+   const p=cur();p.s+=pts;p.r++;S.res[S.idx]={q,ok:true,pts,user:a.txt,rd:q.round,p:p.n}}
+  S.locked=true;tone.ok();confetti();
+  $("fb").innerHTML=`<div class="fb ok"><h3>✅ EXCELLENT! CORRECT ANSWER!</h3>${first?`<b>+${pts} points</b><br>`:""}${q.explanation}</div>`;mark(true);
+ }else{
+  if(first){S.streak=0;const p=cur();if(S.pen){p.s=Math.max(0,p.s-50)}S.res[S.idx]={q,ok:false,pts:0,user:a.txt,rd:q.round,p:p.n}}
+  S.att++;tone.no();$("qb").classList.add("shake");setTimeout(()=>$("qb").classList.remove("shake"),400);
+  if(S.mode==="practice"){$("fb").innerHTML=`<div class="fb bad"><h3>❌ NOT QUITE! TRY AGAIN!</h3>Bạn có thể thử lại hoặc xem đáp án.<br><button class="btn" onclick="retry()">TRY AGAIN</button><button class="btn sec" onclick="reveal()">SHOW ANSWER</button></div>`;$("bc").disabled=true;S.locked=true;return}
+  S.locked=true;$("fb").innerHTML=`<div class="fb bad"><h3>❌ NOT QUITE! TRY AGAIN!</h3>Correct answer: <b>${corr(q)}</b>${S.pen?" (−50)":""}<br>${q.explanation}</div>`;mark(false)}
+ $("bc").disabled=true;$("bn").disabled=false;updTop()}
+function mark(ok){const q=S.q;document.querySelectorAll(".opt").forEach(b=>{const i=+b.dataset.i;b.classList.remove("sel");if(i===q.answer)b.classList.add("ok");else if(!ok&&i===S.sel)b.classList.add("bad")})}
+function retry(){S.locked=false;$("bc").disabled=false;$("fb").innerHTML="";S.sel=null;document.querySelectorAll(".opt").forEach(b=>b.classList.remove("sel","bad"))}
+function reveal(){$("fb").innerHTML=`<div class="fb bad">Correct answer: <b>${corr(S.q)}</b><br>${S.q.explanation}</div>`;mark(false);$("bn").disabled=false}
+function hint(){if(!S.q.hint||S.paused)return;S.hinted=true;const h=$("hint");h.style.display="block";h.innerHTML="💡 "+S.q.hint+(S.mode!=="practice"?" <small>(mất điểm thưởng nhanh)</small>":"")}
+function skip(){if(S.locked||S.paused)return;if(!S.res[S.idx])S.res[S.idx]={q:S.q,ok:false,pts:0,user:"(chưa trả lời)",rd:S.q.round,none:true,p:cur().n};S.streak=0;S.locked=true;$("fb").innerHTML=`<div class="fb bad">Skipped. Correct answer: <b>${corr(S.q)}</b><br>${S.q.explanation}</div>`;mark(false);$("bc").disabled=true;$("bn").disabled=false;updTop()}
+function timeUp(){S.locked=true;S.streak=0;if(!S.res[S.idx])S.res[S.idx]={q:S.q,ok:false,pts:0,user:"(hết giờ)",rd:S.q.round,none:true,p:cur().n};tone.no();
+ $("fb").innerHTML=`<div class="fb bad"><h3>⏰ TIME'S UP!</h3>Correct answer: <b>${corr(S.q)}</b><br>${S.q.explanation}</div>`;mark(false);$("bc").disabled=true;$("bn").disabled=false;updTop()}
+function next(){
+ const q=S.q,nx=S.list[S.idx+1];
+ if(!nx||nx.round!==q.round){const rr=Object.values(S.res).filter(r=>r.rd===q.round),c=rr.filter(r=>r.ok).length,tot=S.list.filter(x=>x.round===q.round).length,b=Math.round(200*c/tot);cur().s+=b;tone.rd();
+  S.rb=S.rb||{};S.rb[q.round]=b;ov(`<div class="big">🎖️</div><h2>ROUND ${q.round} COMPLETE!</h2><p>${c} / ${tot} correct<br><b>Round bonus: +${b}</b></p><button class="btn" onclick="ov();after()">CONTINUE</button>`)}
+ else after()}
+function after(){S.idx++;if(S.idx>=S.list.length)finish();else loadQ()}
+function ov(h){$("ov").classList.toggle("on",!!h);if(h)$("ovb").innerHTML=h}
+function pause(p){if(S.locked&&p)return;S.paused=!!p;if(p)ov(`<div class="big">⏸</div><h2>PAUSED</h2><button class="btn" onclick="pause(0);ov()">RESUME</button>`);else S.last=Date.now()}
+function stop(){S.screen="x";S.paused=true}
+function toast(m){$("fb").innerHTML=`<div class="fb bad">${m}</div>`}
+setInterval(()=>{if(S.screen!=="play"||S.paused||S.locked||!S.ts)return;const n=Date.now();S.left-=n-S.last;S.last=n;if(S.left<=0){S.left=0;updTop();timeUp()}else updTop()},250);
+function title(a){return a>=90?"WORLD SCHOLAR MASTER":a>=80?"GLOBAL KNOWLEDGE CHAMPION":a>=70?"RISING SCHOLAR":a>=60?"YOUNG SCHOLAR":"SCHOLAR IN TRAINING"}
+function finish(){
+ tone.win();confetti();const tot=S.list.length,ok=Object.values(S.res).filter(r=>r.ok).length,un=S.list.filter((q,i)=>!S.res[i]||S.res[i].none).length,wr=tot-ok-un,acc=Math.round(ok/tot*100),sc=S.pl.reduce((a,p)=>a+p.s,0),sec=Math.round((Date.now()-S.t0)/1000);
+ if(S.mode==="full"){S.pl.forEach(p=>{p.s+=0});store.best=Math.max(store.best||0,sc);save()}
+ const rds=[...new Set(S.list.map(q=>q.round))],rows=rds.map(r=>{const rr=Object.values(S.res).filter(x=>x.rd===r),t=S.list.filter(q=>q.round===r).length,c=rr.filter(x=>x.ok).length,s=rr.reduce((a,x)=>a+x.pts,0)+(S.rb&&S.rb[r]||0);return{r,c,t,s}}),mx=Math.max(1,...rows.map(x=>x.s));
+ $("sb").innerHTML=`<div class="card"><h2 style="text-align:center;margin:0">🎓 ${title(acc)}</h2><p class="sub">${S.pl.map(p=>`<b>${p.n}</b>: ${p.s.toLocaleString()} pts`).join(" &nbsp;|&nbsp; ")}</p></div>
+ <div class="stats"><div class="st"><b>${sc.toLocaleString()}</b>Total score</div><div class="st"><b>${tot}</b>Questions</div><div class="st"><b>${ok}</b>Correct</div><div class="st"><b>${wr}</b>Wrong</div><div class="st"><b>${un}</b>Unanswered</div><div class="st"><b>${acc}%</b>Accuracy</div><div class="st"><b>${Math.floor(sec/60)}m ${sec%60}s</b>Time</div><div class="st"><b>${Math.round(sc/tot)}</b>Avg / question</div></div>
+ <div class="card" id="rr"><h3>Round results</h3>${rows.map(x=>`<div class="cr"><span>R${x.r}</span><div class="bar"><i style="width:${x.s/mx*100}%"></i></div><small>${x.s} pts • ${x.c}/${x.t} • ${Math.round(x.c/x.t*100)}%</small></div>`).join("")}</div>`;
+ $("rrd").innerHTML='<option value="0">Mọi vòng</option>'+rds.map(r=>`<option value="${r}">Round ${r}</option>`).join("");show("sum")}
+function rev(f){if(f){$("rf").value=f;$("rrd").value="0"}show("review");const fl=$("rf").value,rd=+$("rrd").value;
+ $("rl").innerHTML=S.list.map((q,i)=>{const r=S.res[i]||{ok:false,pts:0,user:"(chưa trả lời)",none:true};if(rd&&q.round!==rd)return"";if(fl==="ok"&&!r.ok||fl==="bad"&&r.ok)return"";
+ return`<div class="card"><span class="tag">#${q.id} • R${q.round} • ${q.category}</span> <span class="tag">${r.ok?"✅ Correct":"❌ "+(r.none?"Unanswered":"Wrong")}</span> <span class="tag">${r.pts} pts</span>${q.type==="read"?`<div class="pass">${q.extra}</div>`:""}<p class="q">${q.question}</p><p>Your answer: <b>${r.user}</b><br>Correct: <b>${corr(q)}</b></p><p>💬 ${q.explanation}</p></div>`}).join("")||'<div class="card">Không có câu nào.</div>'}
+</script></body></html>
